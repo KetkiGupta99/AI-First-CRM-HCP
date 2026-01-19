@@ -103,4 +103,33 @@ CREATE TABLE hcp_interactions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 ```
+---
+
+| Endpoint            | Method | Description                                                                                                              |
+| ------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `/userdata`         | POST   | Accepts raw HCP interaction text, returns structured interaction data. Also saves interaction to Postgres if HCP exists. |
+| `/next-best-action` | POST   | Accepts interaction data, returns AI-recommended next steps.                                                             |
+
+---
+How to Run Locally
+
+Backend
+1. Create .env file with GROQ_API_KEY.
+2. Install dependencies: pip install fastapi uvicorn langgraph langchain-groq python-dotenv psycopg2-binary
+3. Start FastAPI server: fastapi run langgraph_agent.py --reload
+
+Frontend
+1. Install dependencies: npm install
+2. Start React app:
+3. npm run dev
+4. Open http://localhost:5173 in browser.
+---
+
+Learnings
+
+1. LangGraph makes multi-turn AI workflows stateful and modular.
+2. LLM extracts structured data automatically, reducing manual data entry.
+3. AI Meeting Prep Assistant saves field reps preparation time and improves meeting quality.
+4. Redux ensures UI updates reflect backend changes immediately.
